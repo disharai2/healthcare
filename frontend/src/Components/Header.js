@@ -17,7 +17,7 @@ function Headers() {
               <Link to="/" className="nav-link ">Home</Link>
           </li>
           <li className="nav-item mx-3">
-              <Link to="/findAdoctor" className="nav-link">Find a Doctor</Link>
+              <Link to="/get" className="nav-link">Find</Link>
           </li>
           <li className="nav-item mx-3">
             <Link to="/task" className="nav-link">Tasks</Link>
@@ -25,7 +25,9 @@ function Headers() {
           <li className="nav-item mx-3">
               <Link to="/Contact" className="nav-link">Contact</Link>
           </li>
-      
+          <li className="nav-item mx-3">
+              <Link to="/add" className="nav-link">add</Link>
+          </li> 
           <li className="nav-item ">
             <NavDropdown title="Conditions" id="basic-nav-dropdown" className="mx-3">
               <NavDropdown.Item href="/migraine">Migraine</NavDropdown.Item>

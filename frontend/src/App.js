@@ -16,7 +16,8 @@ import Task from './Components/Task'
 import TeenHealth from './Components/Wellbeing/TeenHealth'
 import Pills from './Components/Drugs/Pills'
 import {BrowserRouter,Routes,Route} from "react-router-dom"
-
+import AddPatient from './Components/addpatient'
+import PatientDetails from './Components/patientdetails'
 function App(){
     return(
       <>
@@ -33,6 +34,8 @@ function App(){
             <Route path='/task' element={<Task/>}/>
             <Route path="/cancer" element={<Cancer/>} />
             <Route path='/pills' element={<Pills/>}/>
+            <Route path='/add' element={<AddPatient/>}/>
+            <Route path='/get' element={<PatientDetails/>}/>
         <Route path="/hiv" element={<HIV/>}/>
         <Route path="/fever" element={<Fever/>} />
         <Route path="/teenhealth" element={<TeenHealth/>} />
