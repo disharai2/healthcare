@@ -31,7 +31,7 @@ function Headers() {
               <Link to="/Contact" className="nav-link">Contact</Link>
           </li>
           <li className="nav-item mx-3">
-              <Link to="/add" className="nav-link">add</Link>
+              <Link to="/add" className="nav-link">Patient Admit</Link>
           </li> 
           <li className="nav-item ">
             <NavDropdown title="Conditions" id="basic-nav-dropdown" className="mx-3">
