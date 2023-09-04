@@ -1,108 +1,177 @@
-import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css"
-import "react-router-dom"
-import ListGroup from 'react-bootstrap/ListGroup';
-import { Card, CardGroup, Container } from 'react-bootstrap';
-// import { FaSearch } from 'react-icons/fa'; 
-import { Form, InputGroup, DropdownButton, Dropdown } from 'react-bootstrap';
+import React, { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Card, Form, InputGroup, DropdownButton, Dropdown, ListGroup } from 'react-bootstrap';
+import Autosuggest from 'react-autosuggest';
+
+const containerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '100vh',
+  background: 'linear-gradient(45deg, #FF6B6B, #FFD166)',
+  margin: '0', // Add this to remove margin
+};
+
+const titleStyle = {
+  color: '#fff',
+  fontFamily: 'Source Sans Pro, Verdana, sans-serif',
+  fontSize: '3.3125rem',
+  fontWeight: 700,
+};
+
+const cardContainerStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '100vh',
+};
+
+const cardStyle = {
+  maxWidth: '1000px',
+  padding: '10px',
+  backgroundColor: '#FF6B6B',
+  borderRadius: '10px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+  textAlign: 'center',
+  margin: '10px auto',
+};
+
+const rainbowTextStyle = {
+  background: 'linear-gradient(45deg, #FF6B6B, #FFD166)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+  color: '#fff',
+  display: 'inline',
+};
+
+const listItemStyle = {
+  padding: '10px',
+  backgroundColor: '#fff',
+  color: '#FF6B6B',
+  textAlign: 'center',
+  cursor: 'pointer',
+  marginBottom: '10px',
+  display: 'flex',
+};
 
 function Pills() {
-    const backgroundStyle = {
-        backgroundImage: "url('')",
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundAttachment: 'fixed',
-        
-      };
-      const cardStyle = {
-        maxWidth: '1000px',
-        margin: '0 auto',
-        padding: '10px',
-        backgroundColor: '#ADBCE6',
-        borderRadius: '10px',
-        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-        textAlign: 'center',
-        marginTop:'10px',
-      };
-      const ListStyle = {
-        padding: '10px',
-        backgroundColor: '#E6E6FA',
-        textAlign: 'center',
-        cursor: 'pointer',
-        bottomMargin: '10px', display: 'flex' ,
-      };
-    
+  const [selectedFilter, setSelectedFilter] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+
+  const handleFilterChange = (filter) => {
+    setSelectedFilter(filter);
+  };
+
+  const getSuggestions = (value) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0
+      ? []
+      : categories.filter(category =>
+          category.toLowerCase().slice(0, inputLength) === inputValue
+        );
+  };
+
+  const getSuggestionValue = (suggestion) => suggestion;
+
+  const renderSuggestion = (suggestion) => (
+    <div>
+      {suggestion}
+    </div>
+  );
+
+  const inputProps = {
+    placeholder: 'Search',
+    value: selectedFilter,
+    onChange: (e, { newValue }) => {
+      setSelectedFilter(newValue);
+    },
+  };
+
+  const onSuggestionsFetchRequested = ({ value }) => {
+    setSuggestions(getSuggestions(value));
+  };
+
+  const onSuggestionsClearRequested = () => {
+    setSuggestions([]);
+  };
+
+  const categories = [
+    "Bladder Cancer",
+    "Brain Cancer",
+    "Cervical Cancer",
+    "Colorectal Cancer",
+  ];
+
+  const filterInputGroupStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '20px',
+  };
+
+  const filteredCategories = selectedFilter
+    ? categories.filter((category) => category === selectedFilter)
+    : categories;
 
   return (
-    <div >
-      <div
-          style={{
-            backgroundImage: "url('https://images.saymedia-content.com/.image/t_share/MTkyOTkyMzE2OTQ3MjQ0MjUz/website-background-templates.jpg')",
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-            textAlign: 'center',
-            padding: '100px 0',
-          }}
-          >
-            <h1 style={{
-              color: '#00157c',
-              fontFamily: 'Source Sans Pro, Verdana, sans-serif',
-              fontSize: '3.3125rem',
-              fontWeight: 700,
-            }}>
-              DRUGS & MEDICATIONS A-Z
-            </h1>
-            <h3>Trusted source for prescription drugs and medications. </h3>
-        </div>
+    <div style={containerStyle}>
+      <div>
+        <h1 style={titleStyle}>
+          <span style={rainbowTextStyle}>DRUGS & MEDICATIONS A-Z</span>
+        </h1>
+        <h3 style={{ color: '#fff' }}>
+          Trusted source for prescription drugs and medications.
+        </h3>
+      </div>
+      <div style={cardContainerStyle}>
         <Card style={cardStyle}>
           <Card.Body>
-            {/* <Card.Title>Search Box with Dropdown</Card.Title> */}
             <Form>
-              <InputGroup>
-                <Form.Control type="text" placeholder="Enter the Drug name to search" />
-                <DropdownButton variant="outline-secondary" title="Filter">
-                  <Dropdown.Item>Action 1</Dropdown.Item>
-                  <Dropdown.Item>Action 2</Dropdown.Item>
-                  <Dropdown.Item>Action 3</Dropdown.Item>
+              <InputGroup style={filterInputGroupStyle}>
+                <Autosuggest
+                  suggestions={suggestions}
+                  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                  onSuggestionsClearRequested={onSuggestionsClearRequested}
+                  getSuggestionValue={getSuggestionValue}
+                  renderSuggestion={renderSuggestion}
+                  inputProps={inputProps}
+                />
+                <DropdownButton
+                  variant="outline-secondary"
+                  title="Filter"
+                  onSelect={handleFilterChange}
+                >
+                  <Dropdown.Item eventKey="">All</Dropdown.Item>
+                  {categories.map((category) => (
+                    <Dropdown.Item key={category} eventKey={category}>
+                      {category}
+                    </Dropdown.Item>
+                  ))}
                 </DropdownButton>
               </InputGroup>
             </Form>
           </Card.Body>
         </Card>
-        <div style={cardStyle}>
-        <div style={{ display: 'flex' }}>
-            <ListGroup variant="flush" style={{ width: '200px' }}>
-              <ListGroup.Item style={ListStyle}>Bladder Cancer</ListGroup.Item>
-              <ListGroup.Item style={ListStyle}>Brain Cancer</ListGroup.Item>
-              <ListGroup.Item style={ListStyle}>Cervical Cancer</ListGroup.Item>
-              <ListGroup.Item style={ListStyle}>Colorectal Cancer</ListGroup.Item>
-            </ListGroup>
-
-        <ListGroup variant="flush" style={{ width: '200px' }}>
-          <ListGroup.Item style={ListStyle}>Bladder Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Brain Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Cervical Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Colorectal Cancer</ListGroup.Item>
-        </ListGroup>
-
-        <ListGroup variant="flush" style={{ width: '200px' }}>
-          <ListGroup.Item style={ListStyle}>Bladder Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Brain Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Cervical Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Colorectal Cancer</ListGroup.Item>
-        </ListGroup>
-
-        <ListGroup variant="flush" style={{ width: '200px' }}>
-          <ListGroup.Item style={ListStyle}>Bladder Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Brain Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Cervical Cancer</ListGroup.Item>
-          <ListGroup.Item style={ListStyle}>Colorectal Cancer</ListGroup.Item>
-        </ListGroup>
+        <div>
+          {filteredCategories.map((category) => (
+            <div key={category} style={listItemStyle}>
+              <a
+                href={`https://en.wikipedia.org/wiki/${category.replace(/ /g, '_')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {category}
+              </a>
+            </div>
+          ))}
         </div>
-     </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Pills
+export default Pills;
