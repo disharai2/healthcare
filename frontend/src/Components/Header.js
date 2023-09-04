@@ -3,9 +3,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 // import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Headers() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   return (
+    
     <Navbar expand="lg" className="bg-body-tertiary navbar-nav nav-fill w-100 justify-content-between mx-auto" bg="primary" data-bs-theme="dark">
       <Container>
        <Link to="/" className="navbar-brand">Health-Care</Link>
@@ -59,10 +64,14 @@ function Headers() {
           </li>
                 {/* <Nav.Link href="#findadoctor" className="mx-3">Find a Doctor</Nav.Link>
             <Nav.Link href="#task" className="mx-3">Tasks</Nav.Link> */}
-             
+
+             <li>
+              {
+                  isAuthenticated? <LogoutButton/> : <LoginButton/>
+              }
+             </li>
         </ul>
-            <Link className="btn btn-primary mx-3" to="/login">Login</Link>
-            <Link className="btn btn-primary mx-1"  to="/signup">Sign up</Link>
+           
           
         </Navbar.Collapse>
       </Container>
