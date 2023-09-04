@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap'; // Import React Bootstrap components
-
+import { useAuth0 } from '@auth0/auth0-react';
 function PatientDetails() {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false); // Initialize modal state
-
+  const { user, isAuthenticated, isLoading } = useAuth0();
   useEffect(() => {
     // Fetch data from the backend when the component mounts
     axios.get('http://localhost:3001/patients')
@@ -73,18 +73,24 @@ function PatientDetails() {
                   <strong>Medication:</strong> {patient.medication}<br />
                   <strong>Regular Checkup:</strong> {patient.regularCheckup ? 'Yes' : 'No'}
                 </p>
-                <button
-                  className="btn btn-danger mr-2"
-                  onClick={() => handleDelete(patient._id)}
-                >
-                  Delete
-                </button>
-                <button
-                  className="btn btn-primary mx-2"
-                  onClick={() => handleEdit(patient._id)}
-                >
-                  Edit
-                </button>
+                
+                                {isAuthenticated && (
+                  <>
+                    <button
+                      className="btn btn-danger mr-2"
+                      onClick={() => handleDelete(patient._id)}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="btn btn-primary mx-2"
+                      onClick={() => handleEdit(patient._id)}
+                    >
+                      Edit
+                    </button>
+                  </>
+                )}
+
               </div>
             </div>
           </div>
