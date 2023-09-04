@@ -41,7 +41,7 @@ function Headers() {
               </NavDropdown.Item> */}
           <li className="nav-item">
             <NavDropdown title="Drugs & Supplements" id="basic-nav-dropdown" className="mx-3">
-              <NavDropdown.Item href="#action/3.1">Drugs</NavDropdown.Item>
+              <NavDropdown.Item href="/pills">Drugs</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Supplements</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Pill Identifier</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.4">Interaction Checker</NavDropdown.Item>
