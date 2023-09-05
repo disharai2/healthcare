@@ -8,18 +8,46 @@ import Cards from './Card';
 const Home = () => {
   return (
     <div>
-      <div className="company-section text-center mt-5">
-        <h2>Welcome to Our Healthcare Services</h2>
-        <p>Providing quality healthcare for all.</p>
-      </div>
+         <Carousel>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100" 
+                        src="https://www.international-patients.com/wp-content/themes/patients/assets/images/slider5.jpg"
+                        alt="First slide"
+                    />
+                    <Carousel.Caption style={{color:'black'}}>
+                        <h3>Welcome to Our Healthcare Services</h3>
+                        <p>Providing quality healthcare for all.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100" style={{height:500}}
+                        src="https://images.ctfassets.net/pdf29us7flmy/3n7uoyaRCDXNeHmN6YUydv/72bc696d0b981027834a5d7e32644020/B8095-The-Ultimate-Guide-to-Medical-Field-Jobs-D2-Social.png"
+                        alt="Second slide"
+                    />
+                    <Carousel.Caption style={{color:'black'}}>
+                        <h3>Expert Doctors</h3>
+                        <p>Skilled and experienced medical professionals.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                        className="d-block w-100" style={{height:500}}
+                        src="https://www.hfmmagazine.com/ext/resources/images/2017/HFM-magazine/June/0617_intSus_LAP0164_0530_CMYK.jpg"
+                        alt="Third slide"
+                    />
+                    <Carousel.Caption style={{color:'black'}}>
+                        <h3>Modern Facilities</h3>
+                        <p>State-of-the-art facilities for patient care.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+            </Carousel>
 
-      <div className="image-section text-center">
-        <img 
-          src="https://e0.pxfuel.com/wallpapers/996/887/desktop-wallpaper-healthcare-health-care-medical.jpg"
-          alt="Healthcare"
-          className="home-image"
-        />
-      </div>
+            <div className="company-section text-center mt-5">
+                <h2>OUR MISSION</h2>
+                <p> Delivering quality healthcare to every doorstep..</p>
+            </div>
 
       <div className="container mt-5">
         <h2 className="text-center mb-4">Our Services</h2>
@@ -28,7 +56,7 @@ const Home = () => {
             <Row>
               <Col md={4} className="mb-4">
                 <Card className="service-card">
-                  <Card.Img variant="top" src="https://medicalaid.org/wp-content/uploads/2021/04/How-To-Become-A-Cardiologist-Training-Licensing-and-Certification-Requirements.jpg" />
+                  <Card.Img variant="top" src="http://www.narainamedicalcollege.com/assets/images/new/cardiology.jpg" />
                   <Card.Body>
                     <Card.Title>Cardiology</Card.Title>
                   </Card.Body>
@@ -36,7 +64,7 @@ const Home = () => {
               </Col>
               <Col md={4} className="mb-4">
                 <Card className="service-card">
-                  <Card.Img variant="top" src="https://wp02-media.cdn.ihealthspot.com/wp-content/uploads/sites/166/2020/05/06202059/iStock-1174583243.jpg" />
+                  <Card.Img variant="top" src="https://ranjithospital.in/images/specilities/ortho.jpg" />
                   <Card.Body>
                     <Card.Title>Orthopedics</Card.Title>
                   </Card.Body>

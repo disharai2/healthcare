@@ -74,7 +74,7 @@ function PatientDetails() {
                   <strong>Regular Checkup:</strong> {patient.regularCheckup ? 'Yes' : 'No'}
                 </p>
                 
-                                {isAuthenticated && (
+                  {isAuthenticated && (
                   <>
                     <button
                       className="btn btn-danger mr-2"

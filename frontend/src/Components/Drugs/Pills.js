@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Card, Form, InputGroup, DropdownButton, Dropdown, ListGroup } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  Card,
+  Form,
+  InputGroup,
+  DropdownButton,
+  Dropdown,
+} from 'react-bootstrap';
 import Autosuggest from 'react-autosuggest';
 
 const containerStyle = {
@@ -10,7 +16,7 @@ const containerStyle = {
   justifyContent: 'center',
   minHeight: '100vh',
   background: 'linear-gradient(45deg, #FF6B6B, #FFD166)',
-  margin: '0', // Add this to remove margin
+  margin: '0',
 };
 
 const titleStyle = {
@@ -59,6 +65,12 @@ const listItemStyle = {
 function Pills() {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [categories] = useState([
+    'Bladder Cancer',
+    'Brain Cancer',
+    'Cervical Cancer',
+    'Colorectal Cancer',
+  ]);
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
@@ -70,18 +82,15 @@ function Pills() {
 
     return inputLength === 0
       ? []
-      : categories.filter(category =>
-          category.toLowerCase().slice(0, inputLength) === inputValue
+      : categories.filter(
+          (category) =>
+            category.toLowerCase().slice(0, inputLength) === inputValue
         );
   };
 
   const getSuggestionValue = (suggestion) => suggestion;
 
-  const renderSuggestion = (suggestion) => (
-    <div>
-      {suggestion}
-    </div>
-  );
+  const renderSuggestion = (suggestion) => <div>{suggestion}</div>;
 
   const inputProps = {
     placeholder: 'Search',
@@ -99,17 +108,11 @@ function Pills() {
     setSuggestions([]);
   };
 
-  const categories = [
-    "Bladder Cancer",
-    "Brain Cancer",
-    "Cervical Cancer",
-    "Colorectal Cancer",
-  ];
-
   const filterInputGroupStyle = {
     display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: 'row', // Change to row to align input and filter horizontally
+    alignItems: 'center', // Center-align vertically
+    justifyContent: 'center', // Center-align horizontally
     marginBottom: '20px',
   };
 
@@ -121,7 +124,8 @@ function Pills() {
     <div style={containerStyle}>
       <div>
         <h1 style={titleStyle}>
-          <span style={rainbowTextStyle}>DRUGS & MEDICATIONS A-Z</span>
+          <span style={rainbowTextStyle}>
+            <br></br> DRUGS & MEDICATIONS A-Z</span>
         </h1>
         <h3 style={{ color: '#fff' }}>
           Trusted source for prescription drugs and medications.
@@ -131,7 +135,7 @@ function Pills() {
         <Card style={cardStyle}>
           <Card.Body>
             <Form>
-              <InputGroup style={filterInputGroupStyle}>
+              <div style={filterInputGroupStyle}>
                 <Autosuggest
                   suggestions={suggestions}
                   onSuggestionsFetchRequested={onSuggestionsFetchRequested}
@@ -152,7 +156,7 @@ function Pills() {
                     </Dropdown.Item>
                   ))}
                 </DropdownButton>
-              </InputGroup>
+              </div>
             </Form>
           </Card.Body>
         </Card>
@@ -160,7 +164,10 @@ function Pills() {
           {filteredCategories.map((category) => (
             <div key={category} style={listItemStyle}>
               <a
-                href={`https://en.wikipedia.org/wiki/${category.replace(/ /g, '_')}`}
+                href={`https://en.wikipedia.org/wiki/${category.replace(
+                  / /g,
+                  '_'
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

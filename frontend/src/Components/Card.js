@@ -10,26 +10,35 @@ const foodItems = [
     imageUrl:
       'https://img.wbmdstatic.com/dtmcms/live/webmd/consumer_assets/site_images/home_page/wellness-mental-health.jpg?resize=484px:*&output-quality=70',
     title: 'Mental Health',
+    desc:"Mental health encompasses emotional, psychological, and social well-being, influencing cognition, perception, and behavior.",
+
   },
   {
     imageUrl:
       'https://img.wbmdstatic.com/dtmcms/live/webmd/consumer_assets/site_images/home_page/Wellness_Diet_Weight.jpg?resize=484px:*&output-quality=70',
     title: 'Diet and Weight ',
+    desc:"In nutrition, diet is the sum of food consumed by a person or other organism. The word diet often implies the use of specific intake of nutrition for health or weight-management reasons.",
 
   },
   {
     imageUrl:
       'https://img.wbmdstatic.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/webmd_homepage_healthy_aging_image_beach_other/464x634_webmd_homepage_healthy_aging_image_beach_other.jpg?resize=484px:*&output-quality=70',
-    title: 'Healthy Aging',  },
+    title: 'Healthy Aging', 
+    desc:"In humans, ageing represents the accumulation of changes in a human being over time and can encompass physical, psychological, and social changes.", },
+
+    
+    
   {
     imageUrl:
       'https://img.wbmdstatic.com/dtmcms/live/webmd/consumer_assets/site_images/home_page/Wellness_Health_Beauty.jpg?resize=484px:*&output-quality=70',
     title: 'Sex and Relationships',
+    desc:"In humans, ageing represents the accumulation of changes in a human being over time and can encompass physical, psychological, and social changes.",
   },
   {
     imageUrl:
       'https://img.wbmdstatic.com/dtmcms/live/webmd/consumer_assets/site_images/home_page/Wellness_Fitness_and_Excercise.jpg?resize=484px:*&output-quality=70',
     title: 'Fitness and Excercise',
+    desc:"Physical fitness is a state of health and well-being and, more specifically, the ability to perform aspects of sports, occupations and daily activities. Physical fitness is generally achieved through proper nutrition, moderate-vigorous physical exercise, and sufficient rest along with a formal recovery plan.",
   },
 ];
 
@@ -64,7 +73,7 @@ function Cards() {
                 </Card.Body>
                 <Collapse in={collapseStates[index]}>
                   <Card.Footer>
-                    <p>Collapsible content here</p>
+                    <p>{item.desc}</p>
                   </Card.Footer>
                 </Collapse>
               </Card>
