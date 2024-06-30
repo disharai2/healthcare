@@ -8,7 +8,7 @@ app.use(cors());
 // Parse JSON request bodies
 app.use(express.json());
 // Connect to MongoDB (you can change the connection string as needed)
-mongoose.connect('mongodb+srv://shannon:pereira@cluster0.8y3ievi.mongodb.net/taskmanager').then(()=>{
+mongoose.connect('mongodb+srv://disharai2:disharai*2@cluster0.z7064tm.mongodb.net/').then(()=>{
     console.log("DB Connected")
 }).catch((err)=>{
     console.log(err);

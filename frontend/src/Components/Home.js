@@ -56,7 +56,7 @@ const Home = () => {
             <Row>
               <Col md={4} className="mb-4">
                 <Card className="service-card">
-                  <Card.Img variant="top" src="http://www.narainamedicalcollege.com/assets/images/new/cardiology.jpg" />
+                  <Card.Img variant="top" src="https://tse1.mm.bing.net/th?id=OIP.3uA-p233wNQt0GnCRPY2fAAAAA&pid=Api&P=0&h=220" />
                   <Card.Body>
                     <Card.Title>Cardiology</Card.Title>
                   </Card.Body>
